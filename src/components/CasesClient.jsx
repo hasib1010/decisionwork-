@@ -1,4 +1,4 @@
-// src\components\Casesclient.jsx
+// src\components\CasesClient.jsx
 "use client";
 import { useState } from "react";
 import Link from "next/link";
@@ -67,22 +67,33 @@ const CASES = [
 
 const FILTERS = ["all", "go", "nogo", "modify"];
 
+const OUTCOME_STYLES = {
+  go:     { bg: "#ebf4ff", border: "#bee3f8", text: "#2b6cb0" },
+  nogo:   { bg: "#fff5f5", border: "#fed7d7", text: "#c53030" },
+  modify: { bg: "#fffff0", border: "#faf089", text: "#744210" },
+};
+
 /* ─── sub-components ───────────────────────────────────────────────── */
 
 function OutcomeBadge({ outcome }) {
   const label  = outcome === "nogo" ? "No-Go" : outcome.charAt(0).toUpperCase() + outcome.slice(1);
   const filled = outcome === "go";
   const half   = outcome === "modify";
+  const s      = OUTCOME_STYLES[outcome];
 
   return (
-    <div className="inline-flex items-center gap-[10px] px-5 py-3 bg-[#f3f3f3] font-mono text-[12px] uppercase tracking-[0.04em]">
+    <div
+      className="inline-flex items-center gap-[10px] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.05em]"
+      style={{ background: s.bg, border: `1px solid ${s.border}`, color: s.text }}
+    >
       <span
-        className="w-[10px] h-[10px] border-[1.5px] border-[#1a1a1a] flex-shrink-0"
+        className="w-[8px] h-[8px] border-[1.5px] flex-shrink-0"
         style={{
+          borderColor: s.text,
           background: filled
-            ? "#1a1a1a"
+            ? s.text
             : half
-            ? "linear-gradient(135deg,#1a1a1a 50%,transparent 50%)"
+            ? `linear-gradient(135deg,${s.text} 50%,transparent 50%)`
             : "transparent",
         }}
       />
@@ -95,9 +106,10 @@ function CaseModal({ item, onClose }) {
   if (!item) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
+      <div className="absolute inset-0 bg-[#0f1f38]/70" onClick={onClose} />
 
-      <div className="relative bg-[#fafafa] max-w-[640px] w-full max-h-[80vh] overflow-y-auto p-12 z-10">
+      <div className="relative bg-white max-w-[640px] w-full max-h-[80vh] overflow-y-auto p-12 z-10 border border-[#e2e8f0]">
+
         {/* close */}
         <button
           onClick={onClose}
@@ -105,35 +117,35 @@ function CaseModal({ item, onClose }) {
           aria-label="Close"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <line x1="2"  y1="2"  x2="18" y2="18" stroke="#1a1a1a" strokeWidth="1.5" />
-            <line x1="18" y1="2"  x2="2"  y2="18" stroke="#1a1a1a" strokeWidth="1.5" />
+            <line x1="2"  y1="2"  x2="18" y2="18" stroke="#0f1f38" strokeWidth="1.5" />
+            <line x1="18" y1="2"  x2="2"  y2="18" stroke="#0f1f38" strokeWidth="1.5" />
           </svg>
         </button>
 
         {/* header */}
         <div className="mb-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#888] mb-3">{item.id}</p>
-          <h2 className="text-[24px] font-medium mb-4">{item.title}</h2>
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#718096] mb-3">{item.id}</p>
+          <h2 className="font-serif text-[24px] font-medium text-[#0f1f38] mb-4">{item.title}</h2>
           <OutcomeBadge outcome={item.outcome} />
         </div>
 
         {/* context */}
         <div className="mb-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5a5a5a] mb-3">Context</p>
-          <p className="text-[15px] leading-[1.7] text-[#5a5a5a]">{item.context}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#4a5568] mb-3">Context</p>
+          <p className="text-[15px] leading-[1.75] text-[#4a5568]">{item.context}</p>
         </div>
 
         {/* scores */}
         <div className="mb-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5a5a5a] mb-3">
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#4a5568] mb-3">
             Evaluation Scores
           </p>
-          <div className="grid grid-cols-2 gap-[1px] bg-[#d4d4d4] mt-4">
+          <div className="grid grid-cols-2 gap-[1px] bg-[#e2e8f0] mt-4">
             {Object.entries(item.scores).map(([key, val]) => (
-              <div key={key} className="bg-[#fafafa] p-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-[#888] mb-1">{key}</p>
-                <p className="font-mono text-[18px] font-medium">{val}</p>
-                <div className="h-[3px] bg-[#e8e8e8] mt-2">
+              <div key={key} className="bg-white p-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-[#718096] mb-1">{key}</p>
+                <p className="font-serif text-[20px] font-medium text-[#0f1f38]">{val}</p>
+                <div className="h-[3px] bg-[#e2e8f0] mt-2">
                   <div className="score-bar" style={{ width: `${val}%` }} />
                 </div>
               </div>
@@ -143,10 +155,10 @@ function CaseModal({ item, onClose }) {
 
         {/* factors */}
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5a5a5a] mb-3">
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#4a5568] mb-3">
             Determining Factors
           </p>
-          <p className="text-[15px] leading-[1.7] text-[#5a5a5a]">{item.factors}</p>
+          <p className="text-[15px] leading-[1.75] text-[#4a5568]">{item.factors}</p>
         </div>
       </div>
     </div>
@@ -165,19 +177,19 @@ export default function CasesClient() {
 
   return (
     <main>
-      <div className="max-w-[1300px] mx-auto px-8">
+      <div className="max-w-[1100px] mx-auto px-8">
 
         {/* ── Stats ── */}
         <RevealWrapper>
-          <div className="grid grid-cols-3 gap-[1px] bg-[#d4d4d4] border border-[#d4d4d4] my-16">
+          <div className="grid grid-cols-3 gap-[1px] bg-[#e2e8f0] border border-[#e2e8f0] my-16">
             {[
               ["47",  "Total Evaluations"],
               ["34%", "Go Outcomes"      ],
               ["41%", "No-Go Outcomes"   ],
             ].map(([val, label]) => (
-              <div key={label} className="bg-[#fafafa] p-8 text-center">
-                <div className="font-mono text-[36px] font-normal mb-2">{val}</div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5a5a5a]">{label}</p>
+              <div key={label} className="bg-white p-8 text-center">
+                <div className="font-serif text-[40px] font-normal text-[#0f1f38] mb-2">{val}</div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#4a5568]">{label}</p>
               </div>
             ))}
           </div>
@@ -185,7 +197,7 @@ export default function CasesClient() {
 
         {/* ── Filter ── */}
         <RevealWrapper>
-          <div className="flex gap-2 flex-wrap py-8 border-b border-[#e8e8e8]">
+          <div className="flex gap-2 flex-wrap py-8 border-b border-[#e2e8f0]">
             {FILTERS.map((f) => {
               const label = f === "all" ? "All" : f === "nogo" ? "No-Go" : f.charAt(0).toUpperCase() + f.slice(1);
               const active = filter === f;
@@ -195,8 +207,8 @@ export default function CasesClient() {
                   onClick={() => setFilter(f)}
                   className={`px-5 py-[10px] border font-mono text-[11px] uppercase tracking-[0.06em] transition-all duration-200 cursor-pointer ${
                     active
-                      ? "bg-[#1a1a1a] text-[#fafafa] border-[#1a1a1a]"
-                      : "bg-[#fafafa] text-[#5a5a5a] border-[#d4d4d4] hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                      ? "bg-[#0f1f38] text-white border-[#0f1f38]"
+                      : "bg-white text-[#4a5568] border-[#e2e8f0] hover:border-[#0f1f38] hover:text-[#0f1f38]"
                   }`}
                 >
                   {label}
@@ -212,20 +224,20 @@ export default function CasesClient() {
             <RevealWrapper key={c.id}>
               <article
                 onClick={() => setSelected(c)}
-                className={`grid py-12 border-b border-[#e8e8e8] cursor-pointer transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-[#f3f3f3] hover:to-[#fafafa] max-sm:grid-cols-1 max-sm:gap-6 ${
-                  i === 0 ? "border-t border-[#e8e8e8]" : ""
+                className={`grid py-10 border-b border-[#e2e8f0] cursor-pointer transition-all duration-300 hover:pl-4 hover:bg-[#f7f8fa] max-sm:grid-cols-1 max-sm:gap-6 ${
+                  i === 0 ? "border-t border-[#e2e8f0]" : ""
                 }`}
                 style={{ gridTemplateColumns: "1fr 140px", gap: 48 }}
               >
                 <div>
-                  <div className="flex items-center gap-4 mb-3">
-                    <span className="px-2 py-1 bg-[#f3f3f3] font-mono text-[10px] uppercase tracking-[0.1em] text-[#888]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="px-2 py-1 bg-[#f7f8fa] font-mono text-[10px] uppercase tracking-[0.1em] text-[#718096]">
                       {c.id}
                     </span>
-                    <span className="font-mono text-[11px] text-[#888]">{c.date}</span>
+                    <span className="font-mono text-[11px] text-[#718096]">{c.date}</span>
                   </div>
-                  <h2 className="text-[20px] font-medium mb-3">{c.title}</h2>
-                  <p className="text-[15px] leading-[1.7] text-[#5a5a5a] max-w-[560px]">{c.summary}</p>
+                  <h2 className="font-serif text-[20px] font-medium text-[#0f1f38] mb-3">{c.title}</h2>
+                  <p className="text-[14px] leading-[1.75] text-[#4a5568] max-w-[560px]">{c.summary}</p>
                 </div>
                 <div className="flex flex-col items-end">
                   <OutcomeBadge outcome={c.outcome} />
@@ -240,19 +252,26 @@ export default function CasesClient() {
       <CaseModal item={selected} onClose={() => setSelected(null)} />
 
       {/* ── CTA ── */}
-      <section className="py-24 border-t border-[#e8e8e8]">
-        <div className="max-w-[480px] mx-auto px-8 text-center">
+      <section className="py-28 bg-[#0f1f38]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
           <RevealWrapper>
-            <h2 className="text-[24px] font-normal mb-4">Have an idea to evaluate?</h2>
-            <p className="text-[#5a5a5a] mb-8">
-              Submit an inquiry if you want a structured evaluation before committing resources.
+            <h2 className="font-serif text-[clamp(24px,4vw,36px)] font-normal text-white mb-5 leading-[1.25]">
+              Have a decision to evaluate?
+            </h2>
+            <p className="text-[#a0aec0] mb-12 text-[16px] leading-[1.75] max-w-[400px] mx-auto">
+              Submit an inquiry for a structured evaluation before committing resources.
             </p>
-            <Link
-              href="/#engage"
-              className="inline-flex items-center gap-3 bg-[#1a1a1a] text-[#fafafa] px-8 py-4 font-mono text-[12px] font-medium tracking-[0.02em] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              Submit Inquiry <span className="arrow" />
-            </Link>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Link href="/residential-position-determination#engage" className="btn-primary">
+                Residential Position Determination
+              </Link>
+              <Link
+                href="/strategic-evaluation#engage"
+                className="inline-flex items-center gap-3 px-9 py-[18px] border border-white text-white font-sans text-[13px] font-medium tracking-[0.04em] transition-all duration-200 hover:bg-white hover:text-[#0f1f38]"
+              >
+                Strategic Project Evaluation
+              </Link>
+            </div>
           </RevealWrapper>
         </div>
       </section>
