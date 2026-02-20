@@ -16,6 +16,10 @@ function SectionLabel({ children }) {
   );
 }
 
+function ThinRule() {
+  return <div className="w-12 h-[1px] bg-[#4a5568] mb-6" />;
+}
+
 const OUTCOME_STYLES = {
   go:     { bg: "#ebf4ff", border: "#bee3f8", text: "#2b6cb0" },
   nogo:   { bg: "#fff5f5", border: "#fed7d7", text: "#c53030" },
@@ -47,99 +51,79 @@ function OutcomeBadge({ outcome }) {
 export default function RPDPage() {
   return (
     <>
-      {/* ════════════════════ HERO */}
-      <section className="pt-[120px] pb-[120px] bg-white border-b border-[#e2e8f0]">
-        <div className="max-w-[1100px] mx-auto px-8">
-          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#2b6cb0] mb-5">
+
+      {/* ════════════════════ HERO — matches homepage: text-center, no border-b */}
+      <section className="bg-white pt-[120px] pb-[120px]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
+          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#2b6cb0] mb-6">
             Residential Track · RPD
           </p>
-          <h1 className="animate-page-title text-[clamp(28px,5vw,48px)] font-serif font-normal leading-[1.2] max-w-[700px] mb-6 text-[#0f1f38]">
-            Residential Position<br />Determination
+          <h1 className="animate-hero-title text-[clamp(32px,5vw,56px)] font-serif font-normal leading-[1.25] max-w-[780px] mx-auto mb-6 text-[#0f1f38]">
+            Residential Position Determination
           </h1>
-          <p className="animate-page-desc text-[18px] leading-[1.75] max-w-[540px] text-[#4a5568] mb-12">
+          <p className="animate-page-desc text-[17px] leading-[1.75] text-[#4a5568] max-w-[560px] mx-auto mb-12">
             A structured evaluation for residential real estate decisions.
             Not advisory. Not predictive. A finite determination based on your
             stated constraints and the framework's explicit criteria.
           </p>
-          <div className="animate-hero-ctas flex gap-4 flex-wrap">
+          <div className="animate-hero-ctas flex justify-center gap-4 flex-wrap">
             <Link href="#engage" className="btn-primary">
-              Submit RPD Inquiry
+              Submit RPD Inquiry <span className="arrow" />
             </Link>
             <Link href="/process" className="btn-secondary">
-              View Method
+              View Method <span className="arrow" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════ WHAT THIS IS */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 1 · SCOPE — border-t like homepage */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
-            <div className="max-w-[800px]">
-              <div className="w-12 h-[1px] bg-[#4a5568] mb-6" />
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] mb-8 leading-[1.4]">
+            <div className="max-w-[800px] mx-auto">
+              <ThinRule />
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38] mb-8">
                 What this evaluation assesses.
               </h2>
-              <p className="text-[16px] leading-[1.8] text-[#4a5568] mb-6">
+              <p className="text-[17px] leading-[1.8] text-[#4a5568] mb-6">
                 The Residential Position Determination evaluates whether a specific
                 property, market position, or purchase decision is viable given your
                 financial parameters, timeline, risk tolerance, and stated criteria.
               </p>
-              <p className="text-[16px] leading-[1.8] text-[#4a5568]">
+              <p className="text-[17px] leading-[1.8] text-[#4a5568]">
                 It does not predict market movements. It does not recommend specific
                 properties. It evaluates your specific stated decision against a
-                structured set of criteria and returns a position.
+                structured set of criteria and returns a single position.
               </p>
             </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ════════════════════ EVALUATION DIMENSIONS */}
-      <section className="py-24 bg-white border-b border-[#e2e8f0]">
+      {/* ════════════════════ 2 · EVALUATION DIMENSIONS */}
+      <section className="py-24 bg-white border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Evaluation Dimensions</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 Six criteria. Explicit thresholds. No subjectivity.
               </h2>
             </div>
           </RevealWrapper>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#e2e8f0]">
             {[
-              {
-                title: "Financial Viability",
-                desc: "Purchase price, debt service, carrying costs, and liquidity impact assessed against your stated financial parameters.",
-              },
-              {
-                title: "Market Position Clarity",
-                desc: "Whether the defined position is specific enough to evaluate. Vague criteria produce no useful determination.",
-              },
-              {
-                title: "Timeline Feasibility",
-                desc: "Whether your stated decision timeline is realistic given market conditions and process requirements.",
-              },
-              {
-                title: "Risk Threshold",
-                desc: "Downside exposure assessed against your stated risk tolerance and mitigation capacity.",
-              },
-              {
-                title: "Constraint Alignment",
-                desc: "Whether the stated position is coherent with your non-negotiable constraints, as submitted.",
-              },
-              {
-                title: "Exit Clarity",
-                desc: "Whether a clear exit scenario or position endpoint has been defined and is achievable.",
-              },
+              { title: "Financial Viability",     desc: "Purchase price, debt service, carrying costs, and liquidity impact assessed against your stated financial parameters." },
+              { title: "Market Position Clarity", desc: "Whether the defined position is specific enough to evaluate. Vague criteria produce no useful determination." },
+              { title: "Timeline Feasibility",    desc: "Whether your stated decision timeline is realistic given market conditions and process requirements." },
+              { title: "Risk Threshold",          desc: "Downside exposure assessed against your stated risk tolerance and mitigation capacity." },
+              { title: "Constraint Alignment",    desc: "Whether the stated position is coherent with your non-negotiable constraints, as submitted." },
+              { title: "Exit Clarity",            desc: "Whether a clear exit scenario or position endpoint has been defined and is achievable." },
             ].map((d) => (
               <RevealWrapper key={d.title}>
                 <div className="bg-[#f7f8fa] p-8 h-full hover:bg-[#ebf4ff] transition-colors duration-200">
-                  <h4 className="font-serif text-[16px] font-medium text-[#0f1f38] mb-3 leading-[1.35]">
-                    {d.title}
-                  </h4>
+                  <h4 className="font-serif text-[16px] font-medium text-[#0f1f38] mb-3 leading-[1.35]">{d.title}</h4>
                   <p className="text-[13px] leading-[1.75] text-[#4a5568]">{d.desc}</p>
                 </div>
               </RevealWrapper>
@@ -148,15 +132,18 @@ export default function RPDPage() {
         </div>
       </section>
 
-      {/* ════════════════════ REQUIRED SUBMISSION */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 3 · REQUIRED SUBMISSION */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Required Submission</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 What you must provide.
               </h2>
+              <p className="text-[16px] text-[#4a5568] max-w-[480px] mt-4">
+                Incomplete submissions are returned without evaluation.
+              </p>
             </div>
           </RevealWrapper>
           <RevealWrapper delay={1}>
@@ -172,10 +159,7 @@ export default function RPDPage() {
                 ["Risk Tolerance",          "Your stated acceptable downside. Be specific — ranges are acceptable."],
                 ["Exit Definition",         "What does a successful position end look like? Sale, hold period, rental yield, or other defined endpoint."],
               ].map(([title, desc]) => (
-                <div
-                  key={title}
-                  className="flex items-start gap-4 py-4 border-b border-[#e2e8f0] last:border-0 text-[14px] leading-[1.7]"
-                >
+                <div key={title} className="flex items-start gap-4 py-4 border-b border-[#e2e8f0] last:border-0 text-[14px] leading-[1.7]">
                   <span className="w-[5px] h-[5px] bg-[#2b6cb0] mt-[8px] flex-shrink-0" />
                   <span className="text-[#4a5568]">
                     <strong className="font-medium text-[#0f1f38]">{title}:</strong> {desc}
@@ -187,41 +171,29 @@ export default function RPDPage() {
         </div>
       </section>
 
-      {/* ════════════════════ WHAT YOU RECEIVE */}
-      <section className="py-24 bg-white border-b border-[#e2e8f0]">
+      {/* ════════════════════ 4 · OUTPUT */}
+      <section className="py-24 bg-white border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Output</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 What you receive.
               </h2>
+              <p className="text-[16px] text-[#4a5568] max-w-[480px] mt-4">
+                Each outcome includes the full scoring breakdown and the specific criteria that determined it.
+              </p>
             </div>
           </RevealWrapper>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#e2e8f0]">
             {[
-              {
-                outcome: "go",
-                heading: "Go",
-                desc: "The stated position meets all threshold criteria. Proceed with confidence against your submitted parameters. The document confirms what passed and why.",
-              },
-              {
-                outcome: "nogo",
-                heading: "No-Go",
-                desc: "One or more criteria failed threshold with no viable modification path. Do not proceed. The document specifies exactly which criteria failed and why.",
-              },
-              {
-                outcome: "modify",
-                heading: "Modify",
-                desc: "The position is viable under modified parameters. Specific modifications required to achieve a Go outcome are identified. You may resubmit after changes.",
-              },
+              { outcome: "go",     desc: "The stated position meets all threshold criteria. Proceed with confidence against your submitted parameters. The document confirms what passed and why." },
+              { outcome: "nogo",   desc: "One or more criteria failed threshold with no viable modification path. Do not proceed. The document specifies exactly which criteria failed and why." },
+              { outcome: "modify", desc: "The position is viable under modified parameters. Specific modifications required to achieve a Go outcome are identified. You may resubmit after changes." },
             ].map((o) => (
               <RevealWrapper key={o.outcome}>
-                <div className="bg-white p-10 h-full">
-                  <div className="mb-4">
-                    <OutcomeBadge outcome={o.outcome} />
-                  </div>
+                <div className="bg-[#f7f8fa] p-10 h-full">
+                  <div className="mb-5"><OutcomeBadge outcome={o.outcome} /></div>
                   <p className="text-[14px] leading-[1.75] text-[#4a5568]">{o.desc}</p>
                 </div>
               </RevealWrapper>
@@ -230,23 +202,23 @@ export default function RPDPage() {
         </div>
       </section>
 
-      {/* ════════════════════ NOT FOR YOU IF */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 5 · WHO THIS IS FOR */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-              <div>
-                <SectionLabel>Scope</SectionLabel>
-                <h2 className="text-[clamp(22px,3.5vw,28px)] font-serif font-normal text-[#0f1f38] leading-[1.4] mb-6">
-                  This is not general real estate advice.
-                </h2>
-                <p className="text-[15px] leading-[1.8] text-[#4a5568]">
-                  RPD evaluates a specific, defined position against explicit criteria.
-                  It is not a market analysis, a property recommendation service,
-                  or an investment advisory. It produces a single determination
-                  on a single submission.
-                </p>
-              </div>
+            <div className="mb-14">
+              <SectionLabel>Who This Is For</SectionLabel>
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
+                This is not general real estate advice.
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-16 items-start">
+              <p className="text-[16px] leading-[1.8] text-[#4a5568]">
+                RPD evaluates a specific, defined position against explicit criteria.
+                It is not a market analysis, a property recommendation service,
+                or an investment advisory. It produces a single determination
+                on a single submission.
+              </p>
               <div className="bg-white border border-[#e2e8f0] p-8">
                 <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568] mb-6">
                   This Is Not For You If
@@ -272,16 +244,43 @@ export default function RPDPage() {
         </div>
       </section>
 
+      {/* ════════════════════ FINAL CTA — navy block matching homepage */}
+      <section className="py-32 bg-[#0f1f38] border-t border-[#1c2637]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
+          <RevealWrapper>
+            <h2 className="text-[clamp(28px,4.5vw,48px)] font-serif font-normal text-white mb-6 leading-[1.25]">
+              Ready to evaluate your position?
+            </h2>
+            <p className="text-[16px] leading-[1.75] text-[#a0aec0] mb-12 max-w-[480px] mx-auto">
+              Submit your residential decision details. Confirmation of fit within 48 hours.
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Link href="#engage" className="btn-primary">
+                Submit RPD Inquiry <span className="arrow" />
+              </Link>
+              <Link
+                href="/strategic-evaluation"
+                className="inline-flex items-center gap-3 px-9 py-[18px] border-[1.5px] border-white text-white font-sans text-[13px] font-medium tracking-[0.04em] transition-all duration-200 hover:bg-white hover:text-[#0f1f38]"
+              >
+                Strategic Evaluation <span className="arrow" />
+              </Link>
+            </div>
+          </RevealWrapper>
+        </div>
+      </section>
+
       {/* ════════════════════ ENGAGE */}
-      <section className="py-24 bg-white" id="engage">
+      <section className="py-24 bg-white border-t border-[#e2e8f0]" id="engage">
         <div className="max-w-[1100px] mx-auto px-8">
+          <RevealWrapper>
+            <div className="mb-14">
+              <SectionLabel>Engage</SectionLabel>
+              <h2 className="text-[28px] font-serif font-normal text-[#0f1f38]">Submit an RPD Inquiry</h2>
+            </div>
+          </RevealWrapper>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
             <RevealWrapper>
-              <SectionLabel>Engage</SectionLabel>
-              <h2 className="text-[28px] font-serif font-normal mb-6 text-[#0f1f38]">
-                Submit an RPD Inquiry
-              </h2>
-              <p className="text-[15px] leading-[1.75] text-[#4a5568] mb-4">
+              <p className="text-[16px] leading-[1.75] text-[#4a5568] mb-4">
                 Provide the details of your residential decision. You will receive
                 confirmation of fit within 48 hours.
               </p>

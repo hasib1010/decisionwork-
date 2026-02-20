@@ -16,6 +16,10 @@ function SectionLabel({ children }) {
   );
 }
 
+function ThinRule() {
+  return <div className="w-12 h-[1px] bg-[#4a5568] mb-6" />;
+}
+
 const OUTCOME_STYLES = {
   go:     { bg: "#ebf4ff", border: "#bee3f8", text: "#2b6cb0" },
   nogo:   { bg: "#fff5f5", border: "#fed7d7", text: "#c53030" },
@@ -47,55 +51,55 @@ function OutcomeBadge({ outcome }) {
 export default function StrategicPage() {
   return (
     <>
-      {/* ════════════════════ HERO */}
-      <section className="pt-[120px] pb-[120px] bg-white border-b border-[#e2e8f0]">
-        <div className="max-w-[1100px] mx-auto px-8">
-          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#4a5568] mb-5">
+
+      {/* ════════════════════ HERO — matches homepage: text-center, no border */}
+      <section className="bg-white pt-[120px] pb-[120px]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
+          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#4a5568] mb-6">
             Strategic Track · SPE
           </p>
-          <h1 className="animate-page-title text-[clamp(28px,5vw,48px)] font-serif font-normal leading-[1.2] max-w-[700px] mb-6 text-[#0f1f38]">
-            Strategic Project<br />Evaluation
+          <h1 className="animate-hero-title text-[clamp(32px,5vw,56px)] font-serif font-normal leading-[1.25] max-w-[780px] mx-auto mb-6 text-[#0f1f38]">
+            Strategic Project Evaluation
           </h1>
-          <p className="animate-page-desc text-[18px] leading-[1.75] max-w-[540px] text-[#4a5568] mb-12">
+          <p className="animate-page-desc text-[17px] leading-[1.75] text-[#4a5568] max-w-[560px] mx-auto mb-12">
             A structured evaluation for early-stage professional, business, or venture
             decisions. Assesses feasibility, risk, cost, and endgame clarity against
             explicit thresholds. Returns a decision, not a plan.
           </p>
-          <div className="animate-hero-ctas flex gap-4 flex-wrap">
+          <div className="animate-hero-ctas flex justify-center gap-4 flex-wrap">
             <Link href="#engage" className="btn-primary">
-              Submit for Evaluation
+              Submit for Evaluation <span className="arrow" />
             </Link>
             <Link href="/cases" className="btn-secondary">
-              View Past Cases
+              View Past Case Studies <span className="arrow" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════ WHO THIS IS FOR */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 1 · WHO THIS IS FOR */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
-            <div className="max-w-[800px]">
-              <div className="w-12 h-[1px] bg-[#4a5568] mb-6" />
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] mb-8 leading-[1.4]">
+            <div className="max-w-[800px] mx-auto">
+              <ThinRule />
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38] mb-8">
                 For solo professionals who are already competent.
               </h2>
-              <p className="text-[16px] leading-[1.8] text-[#4a5568] mb-6">
+              <p className="text-[17px] leading-[1.8] text-[#4a5568] mb-6">
                 You have built things before. You understand execution. The question is
                 not whether you can build it — it is whether you should. The risk you
                 face is not technical. It is reputational and financial.
               </p>
-              <p className="text-[16px] leading-[1.8] text-[#4a5568]">
+              <p className="text-[17px] leading-[1.8] text-[#4a5568]">
                 This evaluation is not for people exploring possibilities. It is for
                 people who have a specific decision to make and want a structured,
                 dispassionate assessment before committing resources.
               </p>
             </div>
           </RevealWrapper>
-
           <RevealWrapper delay={1}>
-            <div className="bg-white border border-[#e2e8f0] p-8 mt-12 max-w-[640px]">
+            <div className="bg-white border border-[#e2e8f0] p-8 mt-12 max-w-[640px] mx-auto">
               <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568] mb-6">
                 This Is Not For You If
               </p>
@@ -119,49 +123,30 @@ export default function StrategicPage() {
         </div>
       </section>
 
-      {/* ════════════════════ EVALUATION CRITERIA */}
-      <section className="py-24 bg-white border-b border-[#e2e8f0]">
+      {/* ════════════════════ 2 · EVALUATION CRITERIA */}
+      <section className="py-24 bg-white border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Evaluation Criteria</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 Four dimensions. Explicit thresholds.
               </h2>
             </div>
           </RevealWrapper>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[#e2e8f0]">
             {[
-              {
-                n: "01",
-                title: "Feasibility",
-                desc: "Can this be built with available resources? Technical viability, skill gaps, infrastructure requirements.",
-              },
-              {
-                n: "02",
-                title: "Risk Exposure",
-                desc: "What could go wrong? Market risk, execution risk, reputational risk, dependency risk.",
-              },
-              {
-                n: "03",
-                title: "Cost Structure",
-                desc: "What does it actually cost? Total investment, burn rate, opportunity cost, hidden costs.",
-              },
-              {
-                n: "04",
-                title: "Endgame Clarity",
-                desc: "Where does this end? Exit paths, sustainability, long-term viability, success criteria.",
-              },
+              { n: "01", title: "Feasibility",    desc: "Can this be built with available resources? Technical viability, skill gaps, infrastructure requirements." },
+              { n: "02", title: "Risk Exposure",  desc: "What could go wrong? Market risk, execution risk, reputational risk, dependency risk." },
+              { n: "03", title: "Cost Structure", desc: "What does it actually cost? Total investment, burn rate, opportunity cost, hidden costs." },
+              { n: "04", title: "Endgame Clarity",desc: "Where does this end? Exit paths, sustainability, long-term viability, success criteria." },
             ].map((d) => (
               <RevealWrapper key={d.title}>
-                <div className="bg-white p-8 h-full hover:bg-[#f7f8fa] transition-colors duration-200">
+                <div className="bg-[#f7f8fa] p-8 h-full hover:bg-[#ebf4ff] transition-colors duration-200">
                   <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#718096] mb-3">
                     Dimension {d.n}
                   </p>
-                  <h4 className="font-serif text-[16px] font-medium text-[#0f1f38] mb-3 leading-[1.35]">
-                    {d.title}
-                  </h4>
+                  <h4 className="font-serif text-[16px] font-medium text-[#0f1f38] mb-3 leading-[1.35]">{d.title}</h4>
                   <p className="text-[13px] leading-[1.75] text-[#4a5568]">{d.desc}</p>
                 </div>
               </RevealWrapper>
@@ -170,15 +155,18 @@ export default function StrategicPage() {
         </div>
       </section>
 
-      {/* ════════════════════ REQUIRED SUBMISSION */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 3 · REQUIRED SUBMISSION */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Required Submission</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 What you must provide.
               </h2>
+              <p className="text-[16px] text-[#4a5568] max-w-[480px] mt-4">
+                Incomplete submissions are returned without evaluation.
+              </p>
             </div>
           </RevealWrapper>
           <RevealWrapper delay={1}>
@@ -194,10 +182,7 @@ export default function StrategicPage() {
                 ["Timeline Assumptions",  "Key milestones and deadlines you are operating under."],
                 ["Definition of Success", "Specific, measurable outcomes that would constitute success."],
               ].map(([title, desc]) => (
-                <div
-                  key={title}
-                  className="flex items-start gap-4 py-4 border-b border-[#e2e8f0] last:border-0 text-[14px] leading-[1.7]"
-                >
+                <div key={title} className="flex items-start gap-4 py-4 border-b border-[#e2e8f0] last:border-0 text-[14px] leading-[1.7]">
                   <span className="w-[5px] h-[5px] bg-[#2b6cb0] mt-[8px] flex-shrink-0" />
                   <span className="text-[#4a5568]">
                     <strong className="font-medium text-[#0f1f38]">{title}:</strong> {desc}
@@ -209,18 +194,17 @@ export default function StrategicPage() {
         </div>
       </section>
 
-      {/* ════════════════════ PROCESS */}
-      <section className="py-24 bg-white border-b border-[#e2e8f0]">
+      {/* ════════════════════ 4 · PROCESS */}
+      <section className="py-24 bg-white border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Process</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 Four steps. One outcome. Then it ends.
               </h2>
             </div>
           </RevealWrapper>
-
           {[
             { n: "01", title: "Submission",  desc: "Provide a structured description: problem, solution, audience, constraints, timeline, and definition of success." },
             { n: "02", title: "Evaluation",  desc: "The framework scores feasibility, risk, cost, and endgame clarity against explicit criteria. No interpretation." },
@@ -242,53 +226,39 @@ export default function StrategicPage() {
               </div>
             </RevealWrapper>
           ))}
-
           <RevealWrapper>
             <div className="mt-10">
               <Link
                 href="/process"
                 className="inline-flex items-center gap-3 border border-[#cbd5e0] px-8 py-4 font-sans text-[12px] font-medium tracking-[0.02em] text-[#4a5568] transition-all duration-300 hover:border-[#0f1f38] hover:text-[#0f1f38]"
               >
-                View Full Method
-                <span className="arrow" />
+                View Full Method <span className="arrow" />
               </Link>
             </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ════════════════════ OUTCOMES */}
-      <section className="py-24 bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      {/* ════════════════════ 5 · OUTCOMES */}
+      <section className="py-24 bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="mb-14">
               <SectionLabel>Possible Outcomes</SectionLabel>
-              <h2 className="text-[clamp(22px,3.5vw,30px)] font-serif font-normal text-[#0f1f38] leading-[1.4]">
+              <h2 className="text-[clamp(22px,3.5vw,32px)] font-serif font-normal leading-[1.4] text-[#0f1f38]">
                 Three outcomes. Each is finite.
               </h2>
             </div>
           </RevealWrapper>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#e2e8f0]">
             {[
-              {
-                outcome: "go",
-                desc: "All dimensions meet or exceed thresholds. The idea is viable as submitted. Proceed with confidence. The decision document confirms what passed and why.",
-              },
-              {
-                outcome: "nogo",
-                desc: "One or more dimensions fall below thresholds with no viable modification path. Do not proceed. The document specifies which criteria failed and why.",
-              },
-              {
-                outcome: "modify",
-                desc: "One or more dimensions fall below thresholds but can be addressed. The document specifies exact modifications required to achieve Go.",
-              },
+              { outcome: "go",     desc: "All dimensions meet or exceed thresholds. The idea is viable as submitted. Proceed with confidence. The decision document confirms what passed and why." },
+              { outcome: "nogo",   desc: "One or more dimensions fall below thresholds with no viable modification path. Do not proceed. The document specifies which criteria failed and why." },
+              { outcome: "modify", desc: "One or more dimensions fall below thresholds but can be addressed. The document specifies exact modifications required to achieve Go." },
             ].map((o) => (
               <RevealWrapper key={o.outcome}>
                 <div className="bg-white p-10 h-full">
-                  <div className="mb-4">
-                    <OutcomeBadge outcome={o.outcome} />
-                  </div>
+                  <div className="mb-4"><OutcomeBadge outcome={o.outcome} /></div>
                   <p className="text-[14px] leading-[1.75] text-[#4a5568]">{o.desc}</p>
                 </div>
               </RevealWrapper>
@@ -297,16 +267,44 @@ export default function StrategicPage() {
         </div>
       </section>
 
+      {/* ════════════════════ FINAL CTA — navy block matching homepage */}
+      <section className="py-32 bg-[#0f1f38] border-t border-[#1c2637]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
+          <RevealWrapper>
+            <h2 className="text-[clamp(28px,4.5vw,48px)] font-serif font-normal text-white mb-6 leading-[1.25]">
+              Ready to evaluate your idea?
+            </h2>
+            <p className="text-[16px] leading-[1.75] text-[#a0aec0] mb-12 max-w-[480px] mx-auto">
+              Submit your idea for structured evaluation before committing resources.
+              Confirmation of fit within 48 hours.
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Link href="#engage" className="btn-primary">
+                Submit for Evaluation <span className="arrow" />
+              </Link>
+              <Link
+                href="/residential-position-determination"
+                className="inline-flex items-center gap-3 px-9 py-[18px] border-[1.5px] border-white text-white font-sans text-[13px] font-medium tracking-[0.04em] transition-all duration-200 hover:bg-white hover:text-[#0f1f38]"
+              >
+                Residential Evaluation <span className="arrow" />
+              </Link>
+            </div>
+          </RevealWrapper>
+        </div>
+      </section>
+
       {/* ════════════════════ ENGAGE */}
-      <section className="py-24 bg-white" id="engage">
+      <section className="py-24 bg-white border-t border-[#e2e8f0]" id="engage">
         <div className="max-w-[1100px] mx-auto px-8">
+          <RevealWrapper>
+            <div className="mb-14">
+              <SectionLabel>Engage</SectionLabel>
+              <h2 className="text-[28px] font-serif font-normal text-[#0f1f38]">Submit for Strategic Evaluation</h2>
+            </div>
+          </RevealWrapper>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
             <RevealWrapper>
-              <SectionLabel>Engage</SectionLabel>
-              <h2 className="text-[28px] font-serif font-normal mb-6 text-[#0f1f38]">
-                Submit for Strategic Evaluation
-              </h2>
-              <p className="text-[15px] leading-[1.75] text-[#4a5568] mb-4">
+              <p className="text-[16px] leading-[1.75] text-[#4a5568] mb-4">
                 If you have an early-stage idea and want a structured evaluation
                 before committing resources, submit your inquiry. Confirmation
                 of fit within 48 hours.

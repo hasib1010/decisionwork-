@@ -15,27 +15,40 @@ function SectionLabel({ children }) {
   );
 }
 
+function ThinRule() {
+  return <div className="w-12 h-[1px] bg-[#4a5568] mb-6" />;
+}
+
 export default function ProcessPage() {
   return (
     <>
-      {/* ════════════════════ HERO */}
-      <section className="pt-[120px] pb-20 bg-white border-b border-[#e2e8f0]">
-        <div className="max-w-[1100px] mx-auto px-8">
-          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#4a5568] mb-5">
+
+      {/* ════════════════════ HERO — centered, no border, matches homepage */}
+      <section className="bg-white pt-[120px] pb-[120px]">
+        <div className="max-w-[1100px] mx-auto px-8 text-center">
+          <p className="animate-hero-label font-mono text-[11px] uppercase tracking-[0.12em] text-[#4a5568] mb-6">
             Method
           </p>
-          <h1 className="animate-page-title text-[clamp(28px,5vw,48px)] font-serif font-normal leading-tight mb-6 text-[#0f1f38]">
+          <h1 className="animate-hero-title text-[clamp(32px,5vw,56px)] font-serif font-normal leading-[1.25] max-w-[780px] mx-auto mb-6 text-[#0f1f38]">
             The Process
           </h1>
-          <p className="animate-page-desc text-[18px] leading-relaxed max-w-[560px] text-[#4a5568]">
+          <p className="animate-page-desc text-[17px] leading-[1.75] text-[#4a5568] max-w-[560px] mx-auto mb-12">
             Four steps. Each with explicit inputs, criteria, and outputs. No ambiguity,
             no interpretation, no ongoing engagement.
           </p>
+          <div className="animate-hero-ctas flex justify-center gap-4 flex-wrap">
+            <Link href="/residential-position-determination#engage" className="btn-primary">
+              Residential Position Determination <span className="arrow" />
+            </Link>
+            <Link href="/strategic-evaluation#engage" className="btn-secondary">
+              Strategic Project Evaluation <span className="arrow" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ════════════════════ TIMELINE */}
-      <div className="bg-[#f7f8fa] border-b border-[#e2e8f0]">
+      <div className="bg-[#f7f8fa] border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
           <RevealWrapper>
             <div className="flex items-center overflow-x-auto py-8">
@@ -62,7 +75,7 @@ export default function ProcessPage() {
       </div>
 
       {/* ════════════════════ STEP ARTICLES */}
-      <main>
+      <main className="border-t border-[#e2e8f0]">
         <div className="max-w-[1100px] mx-auto px-8">
 
           {/* ── 01 Submission ── */}
@@ -72,11 +85,7 @@ export default function ProcessPage() {
               style={{ gridTemplateColumns: "200px 1fr" }}
             >
               <aside className="sticky top-[100px] h-fit">
-                <div
-                  className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none"
-                >
-                  01
-                </div>
+                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">01</div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568]">Submission</p>
               </aside>
               <div>
@@ -108,6 +117,15 @@ export default function ProcessPage() {
                     </div>
                   ))}
                 </div>
+                {/* Step CTA */}
+                <div className="mt-10 pt-8 border-t border-[#e2e8f0] flex gap-4 flex-wrap">
+                  <Link href="/residential-position-determination#engage" className="btn-primary">
+                    Submit RPD Inquiry <span className="arrow" />
+                  </Link>
+                  <Link href="/strategic-evaluation#engage" className="btn-secondary">
+                    Submit Strategic Inquiry <span className="arrow" />
+                  </Link>
+                </div>
               </div>
             </article>
           </RevealWrapper>
@@ -119,9 +137,7 @@ export default function ProcessPage() {
               style={{ gridTemplateColumns: "200px 1fr" }}
             >
               <aside className="sticky top-[100px] h-fit">
-                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">
-                  02
-                </div>
+                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">02</div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568]">Evaluation</p>
               </aside>
               <div>
@@ -137,7 +153,7 @@ export default function ProcessPage() {
                     ["03", "Cost Structure",  "What does it actually cost? Total investment, burn rate, opportunity cost, hidden costs."],
                     ["04", "Endgame Clarity", "Where does this end? Exit paths, sustainability, long-term viability, success criteria."],
                   ].map(([num, title, desc]) => (
-                    <div key={title} className="bg-white p-7 hover:bg-[#f7f8fa] transition-colors duration-200">
+                    <div key={title} className="bg-[#f7f8fa] p-7 hover:bg-[#ebf4ff] transition-colors duration-200">
                       <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#718096] mb-2">
                         Dimension {num}
                       </p>
@@ -161,9 +177,7 @@ export default function ProcessPage() {
               style={{ gridTemplateColumns: "200px 1fr" }}
             >
               <aside className="sticky top-[100px] h-fit">
-                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">
-                  03
-                </div>
+                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">03</div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568]">Decision</p>
               </aside>
               <div>
@@ -225,6 +239,12 @@ export default function ProcessPage() {
                     </div>
                   ))}
                 </div>
+                {/* Step CTA */}
+                <div className="mt-10 pt-8 border-t border-[#e2e8f0]">
+                  <Link href="/cases" className="btn-secondary">
+                    View Past Cases <span className="arrow" />
+                  </Link>
+                </div>
               </div>
             </article>
           </RevealWrapper>
@@ -236,9 +256,7 @@ export default function ProcessPage() {
               style={{ gridTemplateColumns: "200px 1fr" }}
             >
               <aside className="sticky top-[100px] h-fit">
-                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">
-                  04
-                </div>
+                <div className="font-serif text-[72px] leading-none text-[#e2e8f0] mb-3 select-none">04</div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#4a5568]">Conclusion</p>
               </aside>
               <div>
@@ -248,9 +266,7 @@ export default function ProcessPage() {
                   "The decision is the deliverable. What you do with it is entirely your responsibility.",
                   "If you received a Modify outcome and wish to resubmit, that constitutes a new engagement.",
                 ].map((p) => (
-                  <p key={p} className="mb-6 last:mb-0 text-[16px] leading-[1.8] text-[#4a5568]">
-                    {p}
-                  </p>
+                  <p key={p} className="mb-6 last:mb-0 text-[16px] leading-[1.8] text-[#4a5568]">{p}</p>
                 ))}
               </div>
             </article>
@@ -259,26 +275,26 @@ export default function ProcessPage() {
         </div>
       </main>
 
-      {/* ════════════════════ FINAL CTA */}
-      <section className="py-28 bg-[#0f1f38]">
+      {/* ════════════════════ FINAL CTA — navy block, matches homepage exactly */}
+      <section className="py-32 bg-[#0f1f38] border-t border-[#1c2637]">
         <div className="max-w-[1100px] mx-auto px-8 text-center">
           <RevealWrapper>
-            <h2 className="font-serif text-[clamp(24px,4vw,36px)] font-normal text-white mb-5 leading-[1.25]">
-              Ready to decide?
+            <h2 className="text-[clamp(28px,4.5vw,48px)] font-serif font-normal text-white mb-6 leading-[1.25]">
+              Decide Deliberately.
             </h2>
-            <p className="text-[#a0aec0] mb-12 text-[16px] leading-[1.75] max-w-[420px] mx-auto">
-              Submit an inquiry if you have an early-stage idea and want a structured
-              evaluation before committing resources.
+            <p className="text-[16px] leading-[1.75] text-[#a0aec0] mb-12 max-w-[480px] mx-auto">
+              Submit an inquiry if you have a decision to evaluate before committing
+              resources. Confirmation of fit within 48 hours.
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               <Link href="/residential-position-determination#engage" className="btn-primary">
-                Residential Position Determination
+                Residential Position Determination <span className="arrow" />
               </Link>
               <Link
                 href="/strategic-evaluation#engage"
-                className="inline-flex items-center gap-3 px-9 py-[18px] border border-white text-white font-sans text-[13px] font-medium tracking-[0.04em] transition-all duration-200 hover:bg-white hover:text-[#0f1f38]"
+                className="inline-flex items-center gap-3 px-9 py-[18px] border-[1.5px] border-white text-white font-sans text-[13px] font-medium tracking-[0.04em] transition-all duration-200 hover:bg-white hover:text-[#0f1f38]"
               >
-                Strategic Project Evaluation
+                Strategic Project Evaluation <span className="arrow" />
               </Link>
             </div>
           </RevealWrapper>
